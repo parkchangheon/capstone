@@ -1,0 +1,47 @@
+from skimage.measure import compare_ssim
+import cv2
+path_a= "C:\\Users\\sean park\\dataset\\text1.jpg"
+path_b= "C:\\Users\\sean park\\dataset\\text2.jpg"
+imageA = cv2.imread(path_a)
+imageB = cv2.imread(path_b)
+imageC=imageA.copy()
+
+hsv_image_A = cv2.cvtColor(imageA, cv2.COLOR_RGB2HSV)
+h, s, v = cv2.split(hsv_image_A)
+hsv_image_B = cv2.cvtColor(imageB, cv2.COLOR_RGB2HSV)
+h_B, s_B, v_B = cv2.split(hsv_image_B)
+
+clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+v = clahe.apply(v)
+clahe_B = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+v_B = clahe.apply(v_B)
+
+hsv_image_A = cv2.merge([h, s, v])
+hsv_image_A = cv2.cvtColor(hsv_image_A, cv2.COLOR_HSV2RGB)
+hsv_image_B = cv2.merge([h_B, s_B, v_B])
+hsv_image_B = cv2.cvtColor(hsv_image_B, cv2.COLOR_HSV2RGB)
+
+
+
+gray_A = cv2.cvtColor(hsv_image_A, cv2.COLOR_BGR2GRAY)
+blurred_A = cv2.GaussianBlur(gray_A, (3,3), 0)
+thresh_A = cv2.threshold(blurred_A, 150, 300, cv2.THRESH_BINARY)[1]
+gray_B = cv2.cvtColor(hsv_image_B, cv2.COLOR_BGR2GRAY)
+blurred_B = cv2.GaussianBlur(gray_B, (3,3), 0)
+thresh_B = cv2.threshold(blurred_B, 150, 300, cv2.THRESH_BINARY)[1]
+
+
+tempDiff = cv2.subtract(imageA, imageB)
+
+
+#(score, diff)=compare_ssim(thresh_A, thresh_B, full=True)
+#diff = (diff*255).astype("uint8")
+#print(f"Simlarity:{score:.5f}")
+#assert score, "못찾음"
+
+
+
+cv2.imshow('image',thresh_A)
+cv2.imshow('image2',thresh_B)
+cv2.waitKey(0)
+#cv2.destroyAllwindows()

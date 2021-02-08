@@ -1,0 +1,31 @@
+import matplotlib.image as img
+from keras.applications.vgg16 import VGG16
+from keras.applications.vgg16 import preprocess_input
+
+file="cat.jpg"
+ndarry=img.imread(file)
+
+from keras.applications.vgg16 import VGG16
+from keras.preprocessing import image
+from keras.applications.vgg16 import preprocess_input
+import numpy as np
+model = VGG16(weights='imagenet', include_top=False)
+img_path = 'cat.jpg'
+img = image.load_img(img_path, target_size=(150, 150))
+img_tensor=image.img_to_array(img)
+img_tensor=np.expand_dims(img_tensor,axis=0)
+img_tensor/=255.
+
+print(img_tensor.shape)
+
+import matplotlib.pyplot as plt
+
+plt.imshow(img_tensor[0])
+plt.show()
+
+from keras import models
+
+layer_outputs=[layer.output for layer in model.layers[:8]] # 상위 8개
+activation_model=models.Model(inputs=model.input,outputs=layer_outputs)
+
+activation_model
