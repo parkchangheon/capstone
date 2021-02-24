@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <form class="row g-3" method="POST" action="/book">
+            <div class="col-auto">
+              <label for="isbn" class="visually-hidden">ISBN</label>
+              <input type="text" class="form-control" name="isbn" id="isbn" placeholder="ISBN을 입력하세요.">
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary mb-3">Search</button>
+            </div>
+          </form>
+    </div>
+
+    <div class="container mt-5">
+        <div class="col-auto">
+            <a href="/scan" type="button" class="btn btn-primary mb-3">촬영</a>
+        </div>
+        
+  </div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang='ko'>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" 
+        content="width=device-width,
+        initial-scale=1.0"/>
+        <title>Book Check</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+        <link rel="stylesheet" href="./style_c.css"/>
+        <script src="script_c.js" defer></script>
+    </head>
+
+
+    <body>
+        <div class="mobile-container">
+            <center><div id="name">Book Check</div></center>
+            <header>
+                <input id="title" type="text">
+                <button id="search"> <i class="fas fa-search"></i></button>
+            </header>
+
+
+            <div class="fav-container">
+
+                <h3>많이 거래된 중고 서적</h3>
+
+                <ul class="fav-recs">
+                    <li>
+                        <img src="http://image.kyobobook.co.kr/images/book/large/796/l9791188331796.jpg" 
+                        alt=""/>
+                        <span>돈의속성</span>
+                    </li>
+                    <li>
+                        <img src="http://image.kyobobook.co.kr/images/book/large/267/l9788936434267.jpg" 
+                        alt=""/>
+                        <span>아몬드</span>
+                    </li>
+                    <li>
+                        <img src="http://image.kyobobook.co.kr/images/book/large/020/l9788964359020.jpg" 
+                        alt=""/>
+                        <span>슈독</span>
+                    </li>
+                    <li>
+                        <img src="http://image.kyobobook.co.kr/images/book/large/500/l9791197220500.jpg" 
+                        alt=""/>
+                        <span>광고의원칙</span>
+                    </li>
+                    
+
+ 
+                </ul>
+
+
+            </div>
+
+            <div class="recs">
+
+                <div class="rec">
+
+                    <div class="rec-header">
+                        <span class="random">
+                            책읽기 좋은 장소 
+                        </span>
+                        <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTAxMjNfMjA5%2FMDAxNjExMzc0MDYzNDE0.zVeJs6zJHP6JT0MtBUsxPbjFwpev6gDuqC13kXEharMg.UFMAcPpwvgNWuXtiYb-SqcLqiuZjiUnXN-zJ9PZepdIg.JPEG.rebecaaaa%2FIMG_4249.jpg&type=sc960_832" 
+                        alt="">
+                    </div> 
+
+
+                    <div class="rec-place">
+                        <h4>강릉 오핑하우스</h4>
+
+                        <button class="fav-btn" onclick="btn_change()">
+                            
+                            <span id="btn">
+                                <i class="fas fa-heart"></i>
+                            </span>
+                            <script>
+                                function btn_change(){
+                                    if(document.getElementById("btn").style.color=="black"){
+                                        document.getElementById("btn").style.color="tomato";
+                                    }
+                                    else{
+                                        document.getElementById("btn").style.color="black";
+                                    }
+                                    
+                                }
+                            </script>
+                            
+                        </button>
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+
+
+
+    </body>
+
+
+</html>
