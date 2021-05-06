@@ -1,0 +1,52 @@
+import selectivesearch #이거 pip install로 설치해줄것!!
+import cv2
+import matplotlib.pyplot as plt
+
+
+img=cv2.imread('test3.jpg')
+img=cv2.resize(img,(250,350))
+img_rgb=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+print('img shape : ', img.shape)
+
+plt.figure(figsize=(8,6))
+plt.imshow(img_rgb)
+plt.show()
+
+
+
+
+#selectivesearch.selective_search()는 이미지의 Region Proposal정보를 반환 
+_, regions = selectivesearch.selective_search(img_rgb, 
+                                              scale=100, # bounding box scale 
+                                              min_size=2000) # rect의 최소 사이즈
+
+regions[:5]
+
+
+
+cand_rects=[cand['rect']for cand in regions]
+print(len(cand_rects))
+
+
+cand_rects=[cand['rect']for cand in regions if cand['size']>1000]
+
+green_rgb = (125, 255, 51)
+img_rgb_copy = img_rgb.copy()
+for rect in cand_rects:
+    
+    left = rect[0]
+    top = rect[1]
+    # rect[2], rect[3]은 너비와 높이이므로 우하단 좌표를 구하기 위해 좌상단 좌표에 각각을 더함. 
+    right = left + rect[2]
+    bottom = top + rect[3]
+    
+    img_rgb_copy = cv2.rectangle(img_rgb_copy, (left, top), (right, bottom), color=green_rgb, thickness=2)
+    
+plt.figure(figsize=(8, 8))
+plt.imshow(img_rgb_copy)
+plt.show()
+
+
+cand_rects=[cand['rect']for cand in regions]
+print(cand_rects)
+print(len(cand_rects))
